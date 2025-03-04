@@ -55,10 +55,13 @@ static int is_duplicate(t_node *head, int num)
 
 t_node *parse_args(char **argv)
 {
-    t_node *stack = NULL;
+    t_node *stack;
     t_node *new;
+    t_node *tail;
     int num;
-    
+
+    stack = NULL;
+    tail = NULL;
     while (*argv)
     {
         num = ft_atol(*argv);
@@ -68,9 +71,14 @@ t_node *parse_args(char **argv)
         if (!new)
             exit(1);
         new->value = num;
-        new->next = stack;
-        stack = new;
+        new->next = NULL;
+        if (stack == NULL)
+            stack = new;
+        else
+            tail->next = new;
+        tail = new;
         argv++;
     }
     return (stack);
 }
+

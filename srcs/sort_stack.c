@@ -26,6 +26,7 @@ void sort_stack(t_node **stack_a, t_node **stack_b)
         sort_large(stack_a, stack_b);
 }
 
+
 void sort_two(t_node **stack_a)
 {
     if ((*stack_a)->value > (*stack_a)->next->value)
@@ -38,6 +39,8 @@ void sort_three(t_node **stack_a)
     int b = (*stack_a)->next->value;
     int c = (*stack_a)->next->next->value;
 
+    if (a < b && b < c)
+        return;
     if (a > b && b < c && a < c)
         sa(stack_a);
     else if (a > b && b > c)
@@ -56,8 +59,12 @@ void sort_three(t_node **stack_a)
         rra(stack_a);
 }
 
+
 void sort_five(t_node **stack_a, t_node **stack_b)
 {
+    if (is_sorted(*stack_a))
+        return;
+
     while (stack_size(*stack_a) > 3)
     {
         int min_index = find_min_index(*stack_a);
@@ -65,6 +72,10 @@ void sort_five(t_node **stack_a, t_node **stack_b)
         pb(stack_a, stack_b);
     }
     sort_three(stack_a);
+
+    if ((*stack_a)->value > (*stack_a)->next->value)
+        sa(stack_a);
+
     pa(stack_a, stack_b);
     pa(stack_a, stack_b);
 }

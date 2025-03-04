@@ -31,6 +31,11 @@ int main(int argc, char **argv)
         ft_printf("Usage: ./push_swap [numbers]\n");
         return (1);
     }
+    if (argc == 2)
+    {
+        ft_printf("Nothing to do\n");
+        return (1);
+    }
 
     t_node *stack_a = parse_args(argv + 1);
     t_node *stack_b = NULL;
