@@ -55,5 +55,6 @@ void sort_large(t_node **stack_a, t_node **stack_b);
 void    print_error(void);
 void    move_to_top(t_node **stack, int index);
 int     find_min_index(t_node *stack);
+int     is_sorted(t_node *stack);
 
 #endif
