@@ -6,7 +6,7 @@
 /*   By: bozil <bozil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 10:10:13 by bozil             #+#    #+#             */
-/*   Updated: 2025/03/17 14:22:41 by bozil            ###   ########.fr       */
+/*   Updated: 2025/03/18 12:58:04 by bozil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	push_lower_bits(t_node **stack_a, t_node **stack_b, int bit)
 		i++;
 	}
 }
+
 static void	boucle_large(t_node **stack_a, t_node **stack_b, int max_bits,
 		int size)
 
@@ -66,5 +67,3 @@ void	sort_large(t_node **stack_a, t_node **stack_b)
 		max_bits++;
 	boucle_large(stack_a, stack_b, max_bits, size);
 }
-
-
