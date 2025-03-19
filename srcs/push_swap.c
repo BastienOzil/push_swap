@@ -36,7 +36,7 @@ int	main(int argc, char **argv)
 	}
 	if (argc == 2)
 	{
-		ft_printf("Nothing to do\n");
+		//ft_printf("Nothing to do\n");
 		return (1);
 	}
 	stack_a = parse_args(argv + 1);
