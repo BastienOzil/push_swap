@@ -13,6 +13,29 @@
 #include "../includes/push_swap.h"
 #include <stdio.h>
 
+char	**split_args(char *arg)
+{
+	char	**args;
+
+	args = ft_split(arg, ' ');
+	if (!args || !args[0])
+		print_error();
+	return (args);
+}
+
+void	free_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
+}
+
 void	print_stack(t_node *stack, char *name)
 {
 	ft_printf("%s: ", name);
@@ -28,6 +51,7 @@ int	main(int argc, char **argv)
 {
 	t_node	*stack_a;
 	t_node	*stack_b;
+	char	**split_argv;
 
 	if (argc < 2)
 	{
@@ -36,11 +60,14 @@ int	main(int argc, char **argv)
 	}
 	if (argc == 2)
 	{
-		//ft_printf("Nothing to do\n");
-		return (1);
+		split_argv = split_args(argv[1]);
+		stack_a = parse_args(split_argv);
+		free_split(split_argv);
 	}
-	stack_a = parse_args(argv + 1);
+	else
+		stack_a = parse_args(argv + 1);
 	stack_b = NULL;
 	sort_stack(&stack_a, &stack_b);
 	return (0);
 }
+
