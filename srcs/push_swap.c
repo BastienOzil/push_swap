@@ -18,10 +18,16 @@ char	**split_args(char *arg)
 	char	**args;
 
 	args = ft_split(arg, ' ');
-	if (!args || !args[0])
+	if (!args)
 		print_error();
+	if (!args[0])
+	{
+		free(args);
+		print_error();
+	}
 	return (args);
 }
+
 
 void	free_split(char **split)
 {
