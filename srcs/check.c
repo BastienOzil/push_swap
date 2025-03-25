@@ -58,11 +58,26 @@ static int	is_duplicate(t_node *head, int num)
 	return (0);
 }
 
+static t_node	*create_new_node(int num, t_node **stack)
+{
+	t_node	*new;
+
+	new = malloc(sizeof(t_node));
+	if (!new)
+	{
+		free_stack(stack);
+		print_error();
+	}
+	new->value = num;
+	new->next = NULL;
+	return (new);
+}
+
 t_node	*parse_args(char **argv)
 {
 	t_node	*stack;
-	t_node	*new;
 	t_node	*tail;
+	t_node	*new;
 	int		num;
 
 	stack = NULL;
@@ -71,13 +86,12 @@ t_node	*parse_args(char **argv)
 	{
 		num = ft_atol(*argv);
 		if (is_duplicate(stack, num))
+		{
+			free_stack(&stack);
 			print_error();
-		new = malloc(sizeof(t_node));
-		if (!new)
-			exit(1);
-		new->value = num;
-		new->next = NULL;
-		if (stack == NULL)
+		}
+		new = create_new_node(num, &stack);
+		if (!stack)
 			stack = new;
 		else
 			tail->next = new;
@@ -86,3 +100,5 @@ t_node	*parse_args(char **argv)
 	}
 	return (stack);
 }
+
+
