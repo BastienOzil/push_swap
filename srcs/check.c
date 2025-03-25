@@ -35,15 +35,17 @@ static long	ft_atol(const char *str)
 		print_error();
 	while (*str >= '0' && *str <= '9')
 	{
-		num = num * 10 + (*str - '0');
-		if ((num * sign) > INT_MAX || (num * sign) < INT_MIN)
+		if ((num > (INT_MAX / 10)) || 
+		    (num == (INT_MAX / 10) && (*str - '0') > (INT_MAX % 10)))
 			print_error();
+		num = num * 10 + (*str - '0');
 		str++;
 	}
 	if (*str != '\0')
 		print_error();
 	return (num * sign);
 }
+
 
 static int	is_duplicate(t_node *head, int num)
 {
