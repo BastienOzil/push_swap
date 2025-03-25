@@ -62,33 +62,12 @@ void	sort_three(t_node **stack_a)
 		rra(stack_a);
 }
 
-int	is_sorted_except_first(t_node *stack)
-{
-	if (!stack || !stack->next)
-		return (1);
-	if (stack->value > stack->next->value)
-		stack = stack->next;
-	while (stack->next)
-	{
-		if (stack->value > stack->next->value)
-			return (0);
-		stack = stack->next;
-	}
-	return (1);
-}
-
-
 void	sort_five(t_node **stack_a, t_node **stack_b)
 {
 	int		min_index;
 
 	if (is_sorted(*stack_a))
 		return ;
-	if (is_sorted_except_first(*stack_a))
-	{
-		sa(stack_a);
-		return ;
-	}
 	while (stack_size(*stack_a) > 3)
 	{
 		min_index = find_min_index(*stack_a);
@@ -99,5 +78,3 @@ void	sort_five(t_node **stack_a, t_node **stack_b)
 	pa(stack_a, stack_b);
 	pa(stack_a, stack_b);
 }
-
-

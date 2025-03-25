@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-#include <stdio.h>
+#include "../utils/libft/libft.h"
 
 char	**split_args(char *arg)
 {
@@ -47,6 +47,20 @@ void	print_stack(t_node *stack, char *name)
 	ft_printf("\n");
 }
 
+void    free_stack(t_node **stack)
+{
+    t_node   *head;
+    t_node   *tmp;
+
+    head = *stack;
+    while (head)
+    {
+        tmp = head;
+        head = head->next;
+        free(tmp);
+    }
+}
+
 int	main(int argc, char **argv)
 {
 	t_node	*stack_a;
@@ -68,6 +82,6 @@ int	main(int argc, char **argv)
 		stack_a = parse_args(argv + 1);
 	stack_b = NULL;
 	sort_stack(&stack_a, &stack_b);
+	free_stack(&stack_a);
 	return (0);
 }
-
