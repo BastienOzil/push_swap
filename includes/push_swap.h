@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "../utils/ft_printf/ft_printf.h"
+# include "../utils/libft/libft.h"
 # include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -57,5 +58,9 @@ void	move_to_top(t_node **stack, int index);
 int		find_min_index(t_node *stack);
 int		is_sorted(t_node *stack);
 
+char	**ft_split(char const *str, char c);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+void	*ft_calloc(size_t nmemb, size_t size);
+void    free_stack(t_node **stack);
 
 #endif
