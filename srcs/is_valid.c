@@ -6,7 +6,7 @@
 /*   By: bozil <bozil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 18:10:00 by bozil             #+#    #+#             */
-/*   Updated: 2025/03/26 18:37:03 by bozil            ###   ########.fr       */
+/*   Updated: 2025/03/27 00:09:31 by bozil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ long	ft_atol(const char *str, char **split_argv)
 		{
 			if (split_argv)
 				free_split(split_argv);
-			print_error();
 		}
 		num = num * 10 + (*str - '0');
 		str++;
@@ -68,7 +67,7 @@ long	ft_atol(const char *str, char **split_argv)
 	{
 		if (split_argv)
 			free_split(split_argv);
-		print_error();
+		num = 1000000000000000000;
 	}
 	return (num * sign);
 }
