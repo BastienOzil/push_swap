@@ -1,3 +1,5 @@
+.SILENT:
+
 NAME = push_swap
 
 CC = cc
@@ -12,7 +14,8 @@ PRINTF_DIR = utils/ft_printf
 
 LIBFT_DIR = utils/libft
 
-SRCS = $(SRC_DIR)/push_swap.c $(SRC_DIR)/check.c $(SRC_DIR)/push.c $(SRC_DIR)/swap.c \
+SRCS = $(SRC_DIR)/push_swap.c $(SRC_DIR)/parse.c $(SRC_DIR)/is_valid.c \
+	   $(SRC_DIR)/manage_stack.c $(SRC_DIR)/push.c $(SRC_DIR)/swap.c \
 	   $(SRC_DIR)/rotate.c $(SRC_DIR)/reverse_rotate.c \
        $(SRC_DIR)/sort_stack.c $(SRC_DIR)/sort_large.c $(SRC_DIR)/utils.c 
 
@@ -27,32 +30,32 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS) $(PRINTF) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) $(PRINTF) $(LIBFT) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(PRINTF) $(LIBFT) -o $(NAME)
 
 $(PRINTF):
-	make -C $(PRINTF_DIR)
+	@make -C $(PRINTF_DIR) --no-print-directory
 
 $(LIBFT):
-	make -C $(LIBFT_DIR)
+	@make -C $(LIBFT_DIR) --no-print-directory
 
 $(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR) --no-print-directory
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 %.o: %.c
-	$(CC) $(CFLAGS) -I$(PRINTF_DIR) -I$(LIBFT_DIR) -g3 -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(PRINTF_DIR) -I$(LIBFT_DIR) -g3 -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
-	make clean -C $(PRINTF_DIR) 
-	make clean -C $(LIBFT_DIR)
+	@rm -f $(OBJS)
+	@make clean -C $(PRINTF_DIR) --no-print-directory
+	@make clean -C $(LIBFT_DIR) --no-print-directory
 
 fclean: clean
-	rm -f $(NAME)
-	make fclean -C $(PRINTF_DIR) 
-	make fclean -C $(LIBFT_DIR)
+	@rm -f $(NAME)
+	@make fclean -C $(PRINTF_DIR) --no-print-directory
+	@make fclean -C $(LIBFT_DIR) --no-print-directory
 
 re: fclean all
 

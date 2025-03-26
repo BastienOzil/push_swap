@@ -1,3 +1,5 @@
+.SILENT:
+
 NAME = libft.a
 
 CC = cc
@@ -27,14 +29,14 @@ HEADER = libft.h
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	ar -rcs $(NAME) $(OBJS)
+	@ar -rcs $(NAME) $(OBJS)
 	ranlib $(NAME)
 
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $@
 
 bonus: $(OBJS) $(BOBJS)
-	ar -rcs $(NAME) $(OBJS) $(BOBJS)
+	@ar -rcs $(NAME) $(OBJS) $(BOBJS)
 	ranlib $(NAME)
 
 clean:

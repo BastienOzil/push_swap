@@ -25,7 +25,8 @@ typedef struct s_node
 	struct s_node		*next;
 }	t_node;
 
-t_node	*parse_args(char **argv);
+t_node	*parse_args(char **argv, char **split_argv);
+t_node	*create_new_node(int num, t_node **stack, char **split_argv);
 
 void	swap(t_node **stack);
 void	sa(t_node **stack_a);
@@ -53,7 +54,6 @@ void	sort_three(t_node **stack_a);
 void	sort_five(t_node **stack_a, t_node **stack_b);
 void	sort_large(t_node **stack_a, t_node **stack_b);
 
-void	print_error(void);
 void	move_to_top(t_node **stack, int index);
 int		find_min_index(t_node *stack);
 int		is_sorted(t_node *stack);
@@ -61,6 +61,19 @@ int		is_sorted(t_node *stack);
 char	**ft_split(char const *str, char c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 void	*ft_calloc(size_t nmemb, size_t size);
-void    free_stack(t_node **stack);
+
+long	ft_atol(const char *str, char **split_argv);
+int		is_valid_input(char *arg);
+int		is_duplicate(t_node *head, int num);
+int		ft_printf(const char *format, ...);
+char	**ft_split(char const *s, char c);
+char	**split_args(char *arg);
+
+void	free_stack(t_node **stack);
+void	print_stack(t_node *stack, char *name);
+void	free_split(char **split);
+void	print_error(void);
+void	print_error_and_free(t_node **stack, char **split_argv);
+void	sort_stack(t_node **stack_a, t_node **stack_b);
 
 #endif

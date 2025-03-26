@@ -1,3 +1,5 @@
+.SILENT:
+
 NAME = libftprintf.a
 
 CC = cc
@@ -13,7 +15,7 @@ HEADER = ft_printf.h
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+	@ar rcs $(NAME) $(OBJS)
 	ranlib $(NAME)
 
 .c.o:
