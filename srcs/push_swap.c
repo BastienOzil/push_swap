@@ -19,10 +19,7 @@ int	main(int argc, char **argv)
 	char	**split_argv;
 
 	if (argc < 2)
-	{
-		write(1, "Usage: ./push_swap numbers\n", 27);
 		return (1);
-	}
 	if (argc == 2)
 	{
 		if (!is_valid_input(argv[1]))

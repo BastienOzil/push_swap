@@ -30,20 +30,20 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@ar -rcs $(NAME) $(OBJS)
-	ranlib $(NAME)
+	@ranlib $(NAME)
 
 .c.o:
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 bonus: $(OBJS) $(BOBJS)
 	@ar -rcs $(NAME) $(OBJS) $(BOBJS)
-	ranlib $(NAME)
+	@ranlib $(NAME)
 
 clean:
-	rm -f $(OBJS) $(BOBJS)
+	@rm -f $(OBJS) $(BOBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 

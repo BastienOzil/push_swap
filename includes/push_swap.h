@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bozil <bozil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/17 13:43:02 by bozil             #+#    #+#             */
-/*   Updated: 2025/03/17 13:54:22 by bozil            ###   ########.fr       */
+/*   Created: 2025/03/27 14:41:38 by bozil             #+#    #+#             */
+/*   Updated: 2025/03/27 14:41:38 by bozil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 
 typedef struct s_node
 {
-	int					value;
-	struct s_node		*next;
+	int				value;
+	struct s_node	*next;
 }	t_node;
 
 t_node	*parse_args(char **argv, char **split_argv);
@@ -63,6 +63,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 void	*ft_calloc(size_t nmemb, size_t size);
 
 long	ft_atol(const char *str, char **split_argv);
+long	convert_to_long(const char **str, char **split_argv);
+int		get_sign(const char **str);
 int		is_valid_input(char *arg);
 int		is_duplicate(t_node *head, int num);
 int		ft_printf(const char *format, ...);

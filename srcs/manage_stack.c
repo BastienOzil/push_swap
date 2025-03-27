@@ -6,7 +6,7 @@
 /*   By: bozil <bozil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 18:11:41 by bozil             #+#    #+#             */
-/*   Updated: 2025/03/26 18:14:50 by bozil            ###   ########.fr       */
+/*   Updated: 2025/03/27 14:32:07 by bozil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ t_node	*create_new_node(int num, t_node **stack, char **split_argv)
 
 void	free_stack(t_node **stack)
 {
-	t_node   *head;
-	t_node   *tmp;
+	t_node	*head;
+	t_node	*tmp;
 
 	head = *stack;
 	while (head)

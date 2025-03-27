@@ -1,5 +1,9 @@
 .SILENT:
 
+YELLOW = \033[1;33m
+GREEN = \033[1;32m
+RESET = \033[0m
+
 NAME = push_swap
 
 CC = cc
@@ -31,6 +35,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS) $(PRINTF) $(LIBFT)
 	@$(CC) $(CFLAGS) $(OBJS) $(PRINTF) $(LIBFT) -o $(NAME)
+	@echo "$(GREEN)Yeay, it compile!"
 
 $(PRINTF):
 	@make -C $(PRINTF_DIR) --no-print-directory
