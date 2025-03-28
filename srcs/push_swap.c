@@ -12,6 +12,34 @@
 
 #include "../includes/push_swap.h"
 
+int	find_min(t_node *stack)
+{
+	int	min;
+
+	if (!stack)
+		return (0);
+	min = stack->value;
+	while (stack)
+	{
+		if (stack->value < min)
+			min = stack->value;
+		stack = stack->next;
+	}
+	return (min);
+}
+
+void	shift_stack(t_node *stack)
+{
+	int	min;
+
+	min = find_min(stack);
+	while (stack)
+	{
+		stack->value -= min;
+		stack = stack->next;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_node	*stack_a;
@@ -35,6 +63,7 @@ int	main(int argc, char **argv)
 	if (!stack_a)
 		print_error();
 	stack_b = NULL;
+	shift_stack(stack_a);
 	sort_stack(&stack_a, &stack_b);
 	free_stack(&stack_a);
 	return (0);

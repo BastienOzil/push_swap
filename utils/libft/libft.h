@@ -6,7 +6,7 @@
 /*   By: bozil <bozil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:52:11 by bozil             #+#    #+#             */
-/*   Updated: 2025/02/12 10:41:47 by bozil            ###   ########.fr       */
+/*   Updated: 2025/03/28 14:48:28 by bozil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,7 @@ char	*ft_strrchr(const char *s, int c);
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	**ft_split(char const *str, char c);
+
+void    ft_swap(int *a, int *b);
 
 #endif

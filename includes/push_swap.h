@@ -77,5 +77,6 @@ void	free_split(char **split);
 void	print_error(void);
 void	print_error_and_free(t_node **stack, char **split_argv);
 void	sort_stack(t_node **stack_a, t_node **stack_b);
+int		stack_get_at_index(t_node *stack, int index);
 
 #endif

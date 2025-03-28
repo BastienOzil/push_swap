@@ -6,7 +6,7 @@
 /*   By: bozil <bozil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 10:28:22 by bozil             #+#    #+#             */
-/*   Updated: 2025/03/17 13:40:00 by bozil            ###   ########.fr       */
+/*   Updated: 2025/03/28 14:52:53 by bozil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,17 @@ void	move_to_top(t_node **stack, int index)
 			i++;
 		}
 	}
+}
+
+int	stack_get_at_index(t_node *stack, int index)
+{
+	int	i;
+
+	i = 0;
+	while (stack && i < index)
+	{
+		stack = stack->next;
+		i++;
+	}
+	return (stack ? stack->value : 0);
 }

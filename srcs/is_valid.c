@@ -6,7 +6,7 @@
 /*   By: bozil <bozil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 18:10:00 by bozil             #+#    #+#             */
-/*   Updated: 2025/03/27 14:41:05 by bozil            ###   ########.fr       */
+/*   Updated: 2025/03/28 14:04:16 by bozil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	is_valid_input(char *arg)
 		if (!(arg[i] == ' ' || (arg[i] >= '0' && arg[i] <= '9') || arg[i] == '+'
 				|| arg[i] == '-'))
 			return (0);
-		if ((arg[i] == '+' || arg[i] == '-') && (i > 0 && arg[i - 1] != ' '))
+		if ((arg[i] == '+' || arg[i] == '-') && (!arg[i + 1]
+				|| !(arg[i + 1] >= '0' && arg[i + 1] <= '9')))
 			return (0);
 		if (arg[i] >= '0' && arg[i] <= '9')
 			has_digit = 1;
@@ -50,11 +51,12 @@ int	get_sign(const char **str)
 	sign = 1;
 	while (**str == ' ')
 		(*str)++;
-	if (**str == '+' || **str == '-')
+	if (**str == '-' || **str == '+')
+	{
 		if (**str == '-')
 			sign = -1;
-	if (**str == '+' || **str == '-')
 		(*str)++;
+	}
 	return (sign);
 }
 
@@ -67,60 +69,19 @@ long	convert_to_long(const char **str, char **split_argv)
 	digits = 0;
 	while (**str >= '0' && **str <= '9')
 	{
-		if (digits > 10 || (num > LONG_MAX / 10) || (num == LONG_MAX / 10
+		if (digits > 10 || num > LONG_MAX / 10 || (num == LONG_MAX / 10
 				&& (**str - '0') > LONG_MAX % 10))
-		{
 			if (split_argv)
 				return (num);
-		}
 		num = num * 10 + (**str - '0');
 		(*str)++;
 		digits++;
 	}
-	if (**str != '\0')
-	{
-		if (split_argv)
-			num = 1000000000000000000;
-	}
+	if (**str != '\0' && **str != ' ' && **str != '\t')
+		print_error_and_free(NULL, split_argv);
 	return (num);
 }
 
-/*
-long	ft_atol(const char *str, char **split_argv)
-{
-	long	num;
-	int		sign;
-	int		digits;
-
-	num = 0;
-	sign = 1;
-	digits = 0;
-	while (*str == ' ')
-		str++;
-	if (*str == '+' || *str == '-')
-		if (*str++ == '-')
-			sign = -1;
-	while (*str >= '0' && *str <= '9')
-	{
-		if (digits > 10 || (num > LONG_MAX / 10) || (num == LONG_MAX / 10
-				&& (*str - '0') > LONG_MAX % 10))
-		{
-			if (split_argv)
-				return (num);
-		}
-		num = num * 10 + (*str - '0');
-		str++;
-		digits++;
-	}
-	while (*str == ' ')
-		str++;
-	if (*str != '\0')
-	{
-		if (split_argv)
-			num = 1000000000000000000;
-	}
-	return (num * sign);
-}*/
 int	is_duplicate(t_node *head, int num)
 {
 	while (head)
