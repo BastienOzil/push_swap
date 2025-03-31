@@ -6,7 +6,7 @@
 /*   By: bozil <bozil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 10:28:22 by bozil             #+#    #+#             */
-/*   Updated: 2025/03/28 14:52:53 by bozil            ###   ########.fr       */
+/*   Updated: 2025/03/31 10:30:18 by bozil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,8 @@ int	stack_get_at_index(t_node *stack, int index)
 		stack = stack->next;
 		i++;
 	}
-	return (stack ? stack->value : 0);
+	if (stack)
+		return (stack->value);
+	else
+		return (0);
 }
