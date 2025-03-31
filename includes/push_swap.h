@@ -78,5 +78,11 @@ void	print_error(void);
 void	print_error_and_free(t_node **stack, char **split_argv);
 void	sort_stack(t_node **stack_a, t_node **stack_b);
 int		stack_get_at_index(t_node *stack, int index);
+int		are_valid_args(char **args);
+
+t_node	*handle_single_arg(char *arg);
+t_node	*handle_multiple_args(char **args);
+void	start_sorting(t_node **stack_a, t_node **stack_b);
+void	shift_stack(t_node *stack);
 
 #endif

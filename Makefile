@@ -19,8 +19,8 @@ PRINTF_DIR = utils/ft_printf
 LIBFT_DIR = utils/libft
 
 SRCS = $(SRC_DIR)/push_swap.c $(SRC_DIR)/parse.c $(SRC_DIR)/is_valid.c \
-	   $(SRC_DIR)/manage_stack.c $(SRC_DIR)/push.c $(SRC_DIR)/swap.c \
-	   $(SRC_DIR)/rotate.c $(SRC_DIR)/reverse_rotate.c \
+	   $(SRC_DIR)/manage_stack.c $(SRC_DIR)/push.c $(SRC_DIR)/swap.c $(SRC_DIR)/many_handle.c\
+	   $(SRC_DIR)/rotate.c $(SRC_DIR)/reverse_rotate.c $(SRC_DIR)/is_number.c\
        $(SRC_DIR)/sort_stack.c $(SRC_DIR)/sort_large.c $(SRC_DIR)/utils.c 
 
 OBJS     = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
