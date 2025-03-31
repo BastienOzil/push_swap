@@ -28,16 +28,32 @@ int	find_min(t_node *stack)
 	return (min);
 }
 
-void	shift_stack(t_node *stack)
+int stack_contains_large_positive(t_node *stack)
 {
-	int	min;
+    while (stack)
+    {
+        if (stack->value > INT_MAX / 2)
+            return 1;
+        stack = stack->next;
+    }
+    return 0;
+}
 
-	min = find_min(stack);
-	while (stack)
-	{
-		stack->value -= min;
-		stack = stack->next;
-	}
+void shift_stack(t_node *stack)
+{
+    if (!stack)
+        return;
+    if (is_sorted(stack))
+        return;
+    int min = find_min(stack);
+    if (min < 0 && stack_contains_large_positive(stack))
+        return;
+    
+    while (stack)
+    {
+        stack->value -= min;
+        stack = stack->next;
+    }
 }
 
 int	main(int argc, char **argv)

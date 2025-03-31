@@ -6,7 +6,7 @@
 /*   By: bozil <bozil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 18:10:00 by bozil             #+#    #+#             */
-/*   Updated: 2025/03/28 14:04:16 by bozil            ###   ########.fr       */
+/*   Updated: 2025/03/31 18:40:22 by bozil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,26 +60,30 @@ int	get_sign(const char **str)
 	return (sign);
 }
 
-long	convert_to_long(const char **str, char **split_argv)
+long convert_to_long(const char **str, char **split_argv)
 {
-	long	num;
-	int		digits;
+    long num;
+    int  digits;
 
-	num = 0;
-	digits = 0;
-	while (**str >= '0' && **str <= '9')
-	{
-		if (digits > 10 || num > LONG_MAX / 10 || (num == LONG_MAX / 10
-				&& (**str - '0') > LONG_MAX % 10))
-			if (split_argv)
-				return (num);
-		num = num * 10 + (**str - '0');
-		(*str)++;
-		digits++;
-	}
-	if (**str != '\0' && **str != ' ' && **str != '\t')
-		print_error_and_free(NULL, split_argv);
-	return (num);
+    num = 0;
+    digits = 0;
+    while (**str >= '0' && **str <= '9')
+    {
+        if (digits > 10 || num > LONG_MAX / 10 || (num == LONG_MAX / 10
+                && (**str - '0') > LONG_MAX % 10))
+        {
+            if (split_argv)
+                print_error_and_free(NULL, split_argv);
+            else
+                print_error();
+        }
+        num = num * 10 + (**str - '0');
+        (*str)++;
+        digits++;
+    }
+    if (**str != '\0' && **str != ' ' && **str != '\t')
+        print_error_and_free(NULL, split_argv);
+    return (num);
 }
 
 int	is_duplicate(t_node *head, int num)

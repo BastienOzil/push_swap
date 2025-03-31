@@ -6,7 +6,7 @@
 /*   By: bozil <bozil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 15:33:15 by bozil             #+#    #+#             */
-/*   Updated: 2025/03/31 16:38:16 by bozil            ###   ########.fr       */
+/*   Updated: 2025/03/31 18:52:40 by bozil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,13 @@ t_node	*handle_multiple_args(char **args)
 	return (parse_args(args, NULL));
 }
 
-void	start_sorting(t_node **stack_a, t_node **stack_b)
+void start_sorting(t_node **stack_a, t_node **stack_b)
 {
-	*stack_b = NULL;
-	shift_stack(*stack_a);
-	sort_stack(stack_a, stack_b);
-	free_stack(stack_a);
+    *stack_b = NULL;
+    
+    // Même si la pile semble triée, on continue le processus
+    // car l'algorithme de tri doit faire toutes les étapes
+    shift_stack(*stack_a);
+    sort_stack(stack_a, stack_b);
+    free_stack(stack_a);
 }
