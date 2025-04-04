@@ -6,7 +6,7 @@
 /*   By: bozil <bozil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 18:10:00 by bozil             #+#    #+#             */
-/*   Updated: 2025/03/31 18:40:22 by bozil            ###   ########.fr       */
+/*   Updated: 2025/04/04 12:08:47 by bozil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,17 @@ int	get_sign(const char **str)
 	return (sign);
 }
 
+void check_end_of_number(const char **str, char **split_argv)
+{
+    if (**str != '\0' && **str != ' ' && **str != '\t')
+    {
+        if (split_argv)
+            print_error_and_free(NULL, split_argv);
+        else
+            print_error();
+    }
+}
+
 long convert_to_long(const char **str, char **split_argv)
 {
     long num;
@@ -81,8 +92,7 @@ long convert_to_long(const char **str, char **split_argv)
         (*str)++;
         digits++;
     }
-    if (**str != '\0' && **str != ' ' && **str != '\t')
-        print_error_and_free(NULL, split_argv);
+    check_end_of_number(str, split_argv);
     return (num);
 }
 

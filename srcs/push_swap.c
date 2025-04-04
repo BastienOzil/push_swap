@@ -56,19 +56,25 @@ void shift_stack(t_node *stack)
     }
 }
 
-int	main(int argc, char **argv)
+int main(int argc, char **argv)
 {
-	t_node	*stack_a;
-	t_node	*stack_b;
+    t_node *stack_a;
+    t_node *stack_b;
 
-	if (argc < 2)
-		return (1);
-	if (argc == 2)
-		stack_a = handle_single_arg(argv[1]);
-	else
-		stack_a = handle_multiple_args(argv + 1);
-	if (!stack_a)
-		print_error();
-	start_sorting(&stack_a, &stack_b);
-	return (0);
+    if (argc < 2)
+        return (1);
+    if (argc == 2)
+        stack_a = handle_single_arg(argv[1]);
+    else
+        stack_a = handle_multiple_args(argv + 1);
+    if (!stack_a)
+        print_error();
+    if (is_sorted(stack_a))
+    {
+        free_stack(&stack_a);
+        return (0);
+    }
+    stack_b = NULL;
+    start_sorting(&stack_a, &stack_b);
+    return (0);
 }

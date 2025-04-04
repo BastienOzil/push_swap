@@ -12,19 +12,23 @@
 
 #include "../includes/push_swap.h"
 
-void	sort_stack(t_node **stack_a, t_node **stack_b)
+void sort_stack(t_node **stack_a, t_node **stack_b)
 {
-	int		size;
-
-	size = stack_size(*stack_a);
-	if (size == 2)
-		sort_two(stack_a);
-	else if (size == 3)
-		sort_three(stack_a);
-	else if (size == 5)
-		sort_five(stack_a, stack_b);
-	else
-		sort_large(stack_a, stack_b);
+    int size;
+    
+    size = stack_size(*stack_a);
+    if (is_sorted(*stack_a))
+        return;
+    if (size == 2)
+        sort_two(stack_a);
+    else if (size == 3)
+        sort_three(stack_a);
+    else if (size == 4)
+        sort_four(stack_a, stack_b);
+    else if (size == 5)
+        sort_five(stack_a, stack_b);
+    else
+        sort_large(stack_a, stack_b);
 }
 
 void	sort_two(t_node **stack_a)
@@ -60,6 +64,19 @@ void	sort_three(t_node **stack_a)
 	}
 	else if (a < b && b > c && a > c)
 		rra(stack_a);
+}
+
+void sort_four(t_node **stack_a, t_node **stack_b)
+{
+    int min_index;
+    
+    if (is_sorted(*stack_a))
+        return;
+    min_index = find_min_index(*stack_a);
+    move_to_top(stack_a, min_index);
+    pb(stack_a, stack_b);
+    sort_three(stack_a);
+    pa(stack_a, stack_b);
 }
 
 void	sort_five(t_node **stack_a, t_node **stack_b)
